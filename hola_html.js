@@ -2,17 +2,10 @@ var http=require("http"),
 	fs=require("fs");
 
 
-
-
-
 http.createServer(function (req,res){
 
-
 	fs.readFile("./index.html",function(err,html){
-		
 		res.writeHead(404,{"Content-Type":"application/json"});
-
-		//res.write(html);
 
 		var variableJson={nombre:"zahit",user:"elzah"};
 		res.write(JSON.stringify(variableJson));
