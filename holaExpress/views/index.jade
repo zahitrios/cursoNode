@@ -2,4 +2,41 @@ html
   head
     title Mi primera página con jade
   body
-    h1!=saludo
+    - var arreglo = [1,2,3,4,5];
+
+    - for (var i=0; i<arreglo.length; i++)
+        p="<h1>Sin etiquetas html "+arreglo[i]+"</h1>"
+
+    - for (var i=0; i<arreglo.length; i++)
+        p!="<h1>Con etiquetas html "+arreglo[i]+"</h1>"
+
+    - for (var i=0; i<arreglo.length; i++)
+        p Interpolación #{arreglo[i]}
+
+
+    -var paginas = ["inicio","nosotros","servicios","clientes","contacto"]
+    ul
+        each pagina in paginas
+            li: a(href=pagina+".html") #{pagina}
+
+
+    //El punto es para que jade no interprete lo siguiente como etiqueta sino como una cadena 
+    p.
+        Este es un ejemplo de interpolación de etiquetas #[a(href="http://google.com") mi link]
+
+
+    if true
+        p Este es un ejemplo de un if sin guión y sin paréntesis
+
+
+    //Vuelvo a trabajar con la variable arreglo
+    each arr in arreglo
+        case arr
+            when 1
+                p El item era uno = #{arr}
+            when 2
+                p El item era dos = #{arr}
+            when 3
+                p El item era tres = #{arr}
+            default
+                p El item no era ni uno ni dos ni tres
